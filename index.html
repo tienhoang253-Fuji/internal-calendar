@@ -1,75 +1,130 @@
-<main class="calendar-grid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPS Internal Calendar</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  padding:20px;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fff;
+}
+.calendar-container{
+  max-width:1800px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.month{
+  border:1px solid #ddd;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  transition:.2s;
+  background:#fff;
+}
+.month:hover{
+  transform:translateY(-3px) scale(1.01);
+  box-shadow:0 10px 22px rgba(0,0,0,.18);
+}
+.month button{
+  width:100%;
+  padding:0;
+  border:none;
+  background:none;
+  cursor:pointer;
+}
+.month img{
+  width:100%;
+  display:block;
+}
+.lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  z-index:9999;
+}
+.lightbox.open{display:flex;}
+.lightbox img{
+  max-width:95vw;
+  max-height:95vh;
+  background:#fff;
+}
+.close{
+  position:fixed;
+  top:15px;
+  right:20px;
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  font-size:28px;
+  cursor:pointer;
+}
+@media(max-width:1200px){
+.calendar-container{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:850px){
+.calendar-container{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:550px){
+.calendar-container{grid-template-columns:1fr;}
+body{padding:10px;}
+}
+</style>
+</head>
+<body>
 
-    <section class="month">
-      <a href="July.svg" target="_blank">
-        <img src="July.svg" alt="July calendar">
-      </a>
-    </section>
+<main class="calendar-container">
 
-    <section class="month">
-      <a href="August.svg" target="_blank">
-        <img src="August.svg" alt="August calendar">
-      </a>
-    </section>
+<section class="month"><button onclick="showImg('July.svg')"><img src="July.svg"></button></section>
+<section class="month"><button onclick="showImg('August.svg')"><img src="August.svg"></button></section>
+<section class="month"><button onclick="showImg('September.svg')"><img src="September.svg"></button></section>
+<section class="month"><button onclick="showImg('October.svg')"><img src="October.svg"></button></section>
 
-    <section class="month">
-      <a href="September.svg" target="_blank">
-        <img src="September.svg" alt="September calendar">
-      </a>
-    </section>
+<section class="month"><button onclick="showImg('November.svg')"><img src="November.svg"></button></section>
+<section class="month"><button onclick="showImg('December.svg')"><img src="December.svg"></button></section>
+<section class="month"><button onclick="showImg('January.svg')"><img src="January.svg"></button></section>
+<section class="month"><button onclick="showImg('February.svg')"><img src="February.svg"></button></section>
 
-    <section class="month">
-      <a href="October.svg" target="_blank">
-        <img src="October.svg" alt="October calendar">
-      </a>
-    </section>
-
-    <section class="month">
-      <a href="November.svg" target="_blank">
-        <img src="November.svg" alt="November calendar">
-      </a>
-    </section>
-
-    <section class="month">
-      <a href="December.svg" target="_blank">
-        <img src="December.svg" alt="December calendar">
-      </a>
-    </section>
-
-    <section class="month">
-      <a href="January.svg" target="_blank">
-        <img src="January.svg" alt="January calendar">
-      </a>
-    </section>
-
-    <section class="month">
-      <a href="February.svg" target="_blank">
-        <img src="February.svg" alt="February calendar">
-      </a>
-    </section>
-
-    <section class="month">
-      <a href="March.svg" target="_blank">
-        <img src="March.svg" alt="March calendar">
-      </a>
-    </section>
-
-    <section class="month">
-      <a href="April.svg" target="_blank">
-        <img src="April.svg" alt="April calendar">
-      </a>
-    </section>
-
-    <section class="month">
-      <a href="May.svg" target="_blank">
-        <img src="May.svg" alt="May calendar">
-      </a>
-    </section>
-
-    <section class="month">
-      <a href="June.svg" target="_blank">
-        <img src="June.svg" alt="June calendar">
-      </a>
-    </section>
+<section class="month"><button onclick="showImg('March.svg')"><img src="March.svg"></button></section>
+<section class="month"><button onclick="showImg('April.svg')"><img src="April.svg"></button></section>
+<section class="month"><button onclick="showImg('May.svg')"><img src="May.svg"></button></section>
+<section class="month"><button onclick="showImg('June.svg')"><img src="June.svg"></button></section>
 
 </main>
+
+<div class="lightbox" id="viewer" onclick="hideImg(event)">
+<button class="close" onclick="hideImg()">×</button>
+<img id="bigImage">
+</div>
+
+<script>
+const viewer=document.getElementById("viewer");
+const big=document.getElementById("bigImage");
+
+function showImg(src){
+  big.src=src;
+  viewer.classList.add("open");
+}
+function hideImg(e){
+  if(!e || e.target===viewer){
+    viewer.classList.remove("open");
+    big.src="";
+  }
+}
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape") hideImg();
+});
+</script>
+
+</body>
+</html>
