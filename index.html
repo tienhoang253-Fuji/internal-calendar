@@ -1,77 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>IPS Internal Calendar</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 24px;
-      background: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .calendar-grid {
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .month {
-      width: 100%;
-      overflow: hidden;
-      background: #ffffff;
-    }
-
-    .month img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    @media (max-width: 900px) {
-      .calendar-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 12px;
-      }
-
-      .calendar-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-    }
-  </style>
-</head>
-
 <body>
   <main class="calendar-grid">
+
     <section class="month">
-      <img src="august.svg" alt="August calendar">
+      <img src="August.svg" alt="August calendar">
     </section>
 
     <section class="month">
-      <img src="september.svg" alt="September calendar">
+      <img src="September.svg" alt="September calendar">
     </section>
 
     <section class="month">
-      <img src="october.svg" alt="October calendar">
+      <img src="October.svg" alt="October calendar">
     </section>
+
   </main>
 </body>
-</html>
